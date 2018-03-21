@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Request data</title>
+  <script src="jquery-1.11.2.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.js"></script>
+  <script src="vertx-eventbus.js"></script>
+
+</head>
+<body>
+
+<script>
+  var eb = new EventBus("/eventbus/");
+
+  function send_username_and_token() {
+    username = document.getElementById('u').value;
+    token = document.getElementById('t').value;
+    console.log(username + " " + token);
+    eb.publish("server", username + " " + token)
+  }
+</script>
+
+
+<form action="">
+  Username:<br>
+  <input id="u" name="username" value="">
+  <br>
+  Token:<br>
+  <input id="t" name="token" value="">
+  <br><br>
+  <input type="submit" value="Submit" onclick="send_username_and_token()">
+</form>
+
+</body>
+</html>
